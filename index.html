@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="author" content="Rana Alsaggaf" />
+    <title>Cookie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, Segoe UI, Tahoma, Arial, sans-serif;
+            background: #101018;
+            color: #f3f3f3;
+            padding: 24px;
+        }
+
+        .card {
+            max-width: 720px;
+            margin: 0 auto;
+            background: #191926;
+            border: 1px solid #2a2a3b;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        h2 {
+            margin: 0 0 8px;
+            font-size: 22px;
+        }
+
+        .muted {
+            color: #c7c9d1;
+            margin: 0 0 12px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: #2a2a3b;
+            margin: 20px 0;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #c7c9d1;
+        }
+
+        input {
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #3a3a4e;
+            background: #121221;
+            color: #fff;
+            min-width: 220px;
+            outline: none;
+            transition: border-color .2s, background .2s;
+        }
+
+        input::placeholder {
+            color: #9aa0b3;
+        }
+
+        input:focus {
+            border-color: #7f8cff;
+        }
+
+        input:hover {
+            background: #18182a;
+        }
+
+        button {
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #3a3a4e;
+            background: #1e1e2d;
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s, transform .15s;
+        }
+
+        button:hover {
+            background: #2a2a3d;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+    </style>
+    <script src="Cookies.js" defer></script>
+</head>
+
+<body>
+    <div class="card">
+        <p class="muted">Hello, <strong id="profile-name">Guest</strong> 👋</p>
+
+        <div class="row">
+            <label for="username">Enter your name:</label>
+            <input id="username" type="text" placeholder="e.g., Rana" />
+            <button id="save" type="button">Save</button>
+            <button id="delete" type="button">Delete</button>
+        </div>
+
+    </div>
+</body>
+
+</html>
