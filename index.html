@@ -98,7 +98,6 @@
             transform: translateY(0);
         }
     </style>
-    <script src="Cookies.js" defer></script>
 </head>
 
 <body>
@@ -109,10 +108,57 @@
             <label for="username">Enter your name:</label>
             <input id="username" type="text" placeholder="e.g., Rana" />
             <button id="save" type="button">Save</button>
-            <button id="delete" type="button">Delete</button>
         </div>
 
+        <p id="cookieOutput" class="muted" style="margin:12px 0 0; white-space:pre-wrap;">
+            (cookies will appear here)
+        </p>
+
+
     </div>
+    <script>
+        function setCookie(name, value, { maxAge, expires } = {}) {
+            let c = encodeURIComponent(name) + "=" + encodeURIComponent(value) + "; path=/; SameSite=Lax";
+            if (maxAge) c += "; max-age=" + maxAge;
+            if (expires) c += "; expires=" + expires.toUTCString();
+            document.cookie = c;
+        }
+
+        function getCookies() {
+            if (!document.cookie) return {};
+            return Object.fromEntries(
+                document.cookie.split("; ").map(kv => {
+                    const [k, ...rest] = kv.split("=");
+                    return [decodeURIComponent(k), decodeURIComponent(rest.join("="))];
+                })
+            );
+        }
+
+        function renderCookies() {
+            const out = document.getElementById("cookieOutput");
+            out.textContent = JSON.stringify(getCookies(), null, 2);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setCookie("Username", "User");
+
+            const twoDaysSec = 2 * 24 * 60 * 60;
+            setCookie("Background", "#131320", { maxAge: twoDaysSec });
+
+            const twoDaysFromNow = new Date(Date.now() + twoDaysSec * 1000);
+            setCookie("Lang", "en", { expires: twoDaysFromNow });
+
+            renderCookies();
+
+            document.getElementById("save").addEventListener("click", () => {
+                const name = document.getElementById("username").value.trim();
+                if (!name) { alert("Type a username first"); return; }
+                setCookie("Username", name);
+                renderCookies();
+            });
+
+        });
+    </script>
 </body>
 
 </html>
